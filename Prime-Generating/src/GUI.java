@@ -22,11 +22,22 @@ public class GUI extends JFrame implements ActionListener {
     public GUI() {
         setContentPane(panel);
         setTitle("Prime");
-        setSize(550, 450);
+        setSize(550,450);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         button.addActionListener(this);
     }
+
+    public void setCountOfLabel(int counter)
+    {
+        l4.setText(String.valueOf(counter));
+    }
+
+    public void setMaxOfLabel(int maximum)
+    {
+        l5.setText(String.valueOf(maximum));
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -36,10 +47,10 @@ public class GUI extends JFrame implements ActionListener {
         String fName = File.getText();
 
         Object obj = new Object();
-        Producer r1 = new Producer(n, bfSz);
+        Producer r1 = new Producer(n,bfSz);
         Consumer r2 = new Consumer(fName);
 
-        Thread th1 = new Thread(new Runnable() {
+        Thread th1 =new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -49,7 +60,7 @@ public class GUI extends JFrame implements ActionListener {
                 }
             }
         });
-        Thread th2 = new Thread(new Runnable() {
+        Thread th2 =new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -62,8 +73,7 @@ public class GUI extends JFrame implements ActionListener {
         th1.start();
         th2.start();
 
-        l4.setText(String.valueOf(r1.getMax()));
-        l5.setText(String.valueOf(r1.getCnt()));
+        l4.setText(String.valueOf(r2.getCnt()));
 
         long end = System.currentTimeMillis();
         long elapsedTime = end - start;
@@ -71,7 +81,13 @@ public class GUI extends JFrame implements ActionListener {
         l6.setText(elapsedTime + " ms");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         new GUI();
+//        GUI gui = new GUI();
+//        gui.setContentPane(gui.panel);
+//        gui.setTitle("Prime");
+//        gui.setSize(550,450);
+//        gui.setVisible(true);
+//        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
