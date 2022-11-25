@@ -1,10 +1,11 @@
 import java.util.LinkedList;
-import java.util.Objects;
 import java.util.Queue;
 
 public class Producer {
     private static Queue<Integer> q = new LinkedList<>();
     private static int N, bfSz;
+    //private int max;
+    //private int cnt = 0 ;
     private static boolean finished = false;
 
 
@@ -30,6 +31,8 @@ public class Producer {
                 }
                 if (prime) {
                     q.add(i);
+                    //cnt++;
+                    //max = q.element();
                 }
                 if (q.size() == bfSz || i == N) {
                     if (!firstTime)
@@ -50,4 +53,7 @@ public class Producer {
     Queue<Integer> getQ() {
         return q;
     }
+
+    //int getMax(){return max;}
+    //int getCnt(){return cnt;}
 }
