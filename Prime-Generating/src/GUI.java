@@ -28,16 +28,6 @@ public class GUI extends JFrame implements ActionListener {
         button.addActionListener(this);
     }
 
-    public void setCountOfLabel(int counter)
-    {
-        l4.setText(String.valueOf(counter));
-    }
-
-    public void setMaxOfLabel(int maximum)
-    {
-        l5.setText(String.valueOf(maximum));
-    }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -55,6 +45,8 @@ public class GUI extends JFrame implements ActionListener {
             public void run() {
                 try {
                     r1.run(obj);
+//                    l4.setText(String.valueOf(r2.getMax()));
+//                    l5.setText(String.valueOf(r2.getCnt()));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -65,6 +57,8 @@ public class GUI extends JFrame implements ActionListener {
             public void run() {
                 try {
                     r2.run(obj);
+                    l4.setText(String.valueOf(r2.getMax()));
+                    l5.setText(String.valueOf(r2.getCnt()));
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -72,8 +66,6 @@ public class GUI extends JFrame implements ActionListener {
         });
         th1.start();
         th2.start();
-
-        l4.setText(String.valueOf(r2.getCnt()));
 
         long end = System.currentTimeMillis();
         long elapsedTime = end - start;
@@ -83,11 +75,5 @@ public class GUI extends JFrame implements ActionListener {
 
     public static void main(String[] args){
         new GUI();
-//        GUI gui = new GUI();
-//        gui.setContentPane(gui.panel);
-//        gui.setTitle("Prime");
-//        gui.setSize(550,450);
-//        gui.setVisible(true);
-//        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

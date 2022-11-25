@@ -5,7 +5,6 @@ import java.util.Queue;
 public class Consumer extends Thread {
     private String fName;
     private int max , cnt = 0;
-    GUI g = new GUI();
 
     Consumer(String name)
     {
@@ -25,9 +24,7 @@ public class Consumer extends Thread {
                 while (q1.size() > 0) {
                     out.write(q1.peek().toString() + " ");
                     cnt++;
-
-                    g.setCountOfLabel(cnt);
-                    g.setMaxOfLabel(q1.element());
+                    max = q1.peek();
 
                     q1.remove();
                 }
@@ -36,6 +33,10 @@ public class Consumer extends Thread {
             }
         }
         out.close();
+    }
+
+    public int getMax(){
+        return max;
     }
     public int getCnt(){
         return cnt;
