@@ -1,15 +1,13 @@
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Vector;
 
 import static java.lang.Thread.sleep;
 
-public class Producer extends ProducingAndConsuming {
+public class Producer extends Buffer {
     private static int N, bfSz;
-    private static ProducingAndConsuming pc;
+    private static Buffer pc;
 
 
-    Producer(int n, int sz, ProducingAndConsuming pc1) {
+    Producer(int n, int sz, Buffer pc1) {
         N = n;
         bfSz = sz;
         pc = pc1;

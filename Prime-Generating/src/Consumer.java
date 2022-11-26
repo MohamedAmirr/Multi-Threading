@@ -1,17 +1,15 @@
-import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.util.Queue;
 
-public class Consumer extends ProducingAndConsuming {
+public class Consumer extends Buffer {
     private String fName;
     private static int cnt = 0;
     private static long start = 0;
     public static GUI g;
-    private static ProducingAndConsuming pc;
+    private static Buffer pc;
 
 
-    Consumer(String name, GUI gui, long _start, ProducingAndConsuming pc1) {
+    Consumer(String name, GUI gui, long _start, Buffer pc1) {
         fName = name;
         g = gui;
         start = _start;

@@ -6,7 +6,7 @@ public class Main {
         int n = Integer.parseInt(g.Num.getText());
         int bfSz = Integer.parseInt(g.Size.getText());
         String fName = g.File.getText();
-        ProducingAndConsuming pc = new ProducingAndConsuming();
+        Buffer pc = new Buffer();
         Producer r1 = new Producer(n, bfSz, pc);
         Consumer r2 = new Consumer(fName, g, start, pc);
 
