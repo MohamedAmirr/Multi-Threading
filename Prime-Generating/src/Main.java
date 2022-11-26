@@ -2,15 +2,16 @@ public class Main {
     public static GUI g;
 
     void go() throws InterruptedException {
-        long start = System.currentTimeMillis();
-        int n = Integer.parseInt(g.Num.getText());
-        int bfSz = Integer.parseInt(g.Size.getText());
-        String fName = g.File.getText();
+        long start = System.currentTimeMillis();                // capture start time
+        int n = Integer.parseInt(g.Num.getText());              // get num input from GUI TextField
+        int bfSz = Integer.parseInt(g.Size.getText());          // get size input from GUI TextField
+        String fName = g.File.getText();                        // get file name input from GUI TextField
+
         Buffer pc = new Buffer();
         Producer r1 = new Producer(n, bfSz, pc);
         Consumer r2 = new Consumer(fName, g, start, pc);
 
-        Thread th1 = new Thread(new Runnable() {
+        Thread th1 = new Thread(new Runnable() {                // first thread to run producer
             @Override
             public void run() {
                 try {
@@ -20,7 +21,7 @@ public class Main {
                 }
             }
         });
-        Thread th2 = new Thread(new Runnable() {
+        Thread th2 = new Thread(new Runnable() {                // second thread to run consumer
             @Override
             public void run() {
                 try {
@@ -35,6 +36,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        g = new GUI();
+        g = new GUI();                                          // creating object from GUI
     }
 }

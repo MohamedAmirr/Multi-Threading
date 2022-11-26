@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,10 +18,9 @@ public class GUI extends JFrame implements ActionListener {
     public JLabel l5;
     public JLabel l6;
 
-
-    public GUI() {
+    public GUI() {                                          // setting GUI content
         setContentPane(panel);
-        setTitle("Prime");
+        setTitle("Prime Numbers Generator");
         setSize(550, 450);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,15 +28,12 @@ public class GUI extends JFrame implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        Main m = new Main();
+    public void actionPerformed(ActionEvent e) {            // when we press on button start produce
+        Main m = new Main();                                // create new object from main
         try {
-            m.go();
+            m.go();                                         // calling go function in main
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
-//        button.setText("Exit");
-//        button.addActionListener(e.dispose());
     }
-
 }
