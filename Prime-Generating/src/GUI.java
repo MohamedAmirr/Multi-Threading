@@ -26,6 +26,7 @@ public class GUI extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         button.addActionListener(this);
+        closeButton.setVisible(false);
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -42,5 +43,7 @@ public class GUI extends JFrame implements ActionListener {
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
+        button.setVisible(false);
+        closeButton.setVisible(true);
     }
 }
