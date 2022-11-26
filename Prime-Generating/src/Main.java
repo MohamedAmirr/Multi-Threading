@@ -1,21 +1,20 @@
 public class Main {
     public static GUI g;
 
-    void go() {
+    void go() throws InterruptedException {
         long start = System.currentTimeMillis();
         int n = Integer.parseInt(g.Num.getText());
         int bfSz = Integer.parseInt(g.Size.getText());
         String fName = g.File.getText();
-
-        Object obj = new Object();
-        Producer r1 = new Producer(n, bfSz);
-        Consumer r2 = new Consumer(fName, g);
+        ProducingAndConsuming pc = new ProducingAndConsuming();
+        Producer r1 = new Producer(n, bfSz, pc);
+        Consumer r2 = new Consumer(fName, g, start, pc);
 
         Thread th1 = new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    r1.run(obj);
+                    r1.run();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -25,7 +24,7 @@ public class Main {
             @Override
             public void run() {
                 try {
-                    r2.run(obj);
+                    r2.run();
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
@@ -33,10 +32,6 @@ public class Main {
         });
         th1.start();
         th2.start();
-
-        long end = System.currentTimeMillis();
-        long elapsedTime = end - start;
-        g.l6.setText(elapsedTime + " ms");
     }
 
     public static void main(String[] args) {

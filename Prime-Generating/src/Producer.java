@@ -1,53 +1,57 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Vector;
 
-public class Producer {
-    private static Queue<Integer> q = new LinkedList<>();
+import static java.lang.Thread.sleep;
+
+public class Producer extends ProducingAndConsuming {
     private static int N, bfSz;
-    private static boolean finished = false;
+    private static ProducingAndConsuming pc;
 
 
-    Producer(int n, int sz) {
+    Producer(int n, int sz, ProducingAndConsuming pc1) {
         N = n;
         bfSz = sz;
+        pc = pc1;
     }
 
     Producer() {
     }
 
+    Vector<Boolean> GeneratePrimes() {
+        Vector<Boolean> Primes = new Vector<>();
+        Primes.setSize(N + 2);
+        for (int i = 0; i <= N; i++) {
+            Primes.set(i, true);
+        }
+        for (int i = 2; i * i <= N; i++) {
+            if (!Primes.get(i)) {
+                continue;
+            }
+            for (int j = 2 * i; j <= N; j += i) {
+                Primes.set(j, false);
+            }
+        }
+        return Primes;
+    }
 
-    public void run(Object obj) throws Exception {
+    public void run() throws Exception {
+        Vector<Boolean> Primes = GeneratePrimes();
         synchronized (obj) {
-            boolean firstTime = true;
-            for (int i = 1; i <= N; i++) {
-                boolean prime = true;
-                for (int j = 2; j * j <= i; j++) {
-                    if (i % j == 0) {
-                        prime = false;
-                        break;
-                    }
-                }
-                if (prime) {
+            for (int i = 2; i <= N; i++) {
+                if (Primes.get(i)) {
                     q.add(i);
                 }
-                if (q.size() == bfSz || i == N) {
-                    if (!firstTime) {
-                        obj.notify();
-                    }
-                    firstTime = false;
+                if (q.size() == bfSz) {
+                    obj.notify();
                     obj.wait();
+                }
+                if (q.size() > 0) {
+                    obj.notify();
                 }
             }
             obj.notify();
             finished = true;
         }
-    }
-
-    boolean getBool() {
-        return finished;
-    }
-
-    Queue<Integer> getQ() {
-        return q;
     }
 }
