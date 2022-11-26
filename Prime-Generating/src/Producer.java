@@ -36,7 +36,7 @@ public class Producer extends Buffer {
     public void run() throws Exception {
         Vector<Boolean> Primes = GeneratePrimes();
         synchronized (obj) {
-            for (int i = 2; i <= N; i++) {
+            for (int i = 1; i <= N; i++) {
                 if (Primes.get(i)) {
                     q.add(i);
                 }

@@ -29,15 +29,6 @@ public class GUI extends JFrame implements ActionListener {
         button.addActionListener(this);
     }
 
-    public void setCountOfLabel(int counter) {
-        l4.setText(String.valueOf(counter));
-    }
-
-    public void setMaxOfLabel(int maximum) {
-        l5.setText(String.valueOf(maximum));
-    }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Main m = new Main();
@@ -46,6 +37,8 @@ public class GUI extends JFrame implements ActionListener {
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
+//        button.setText("Exit");
+//        button.addActionListener(e.dispose());
     }
 
 }
