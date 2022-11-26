@@ -1,79 +1,49 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI extends JFrame implements ActionListener {
-    private JTextField Num;
-    private JTextField Size;
-    private JTextField File;
+    public JTextField Num;
+    public JTextField Size;
+    public JTextField File;
     private JPanel panel;
-    private JLabel N;
+    public JLabel N;
     private JLabel Buffer;
     private JButton button;
     private JLabel Name;
     private JLabel l1;
     private JLabel l2;
     private JLabel l3;
-    private JLabel l4;
-    private JLabel l5;
-    private JLabel l6;
+    public JLabel l4;
+    public JLabel l5;
+    public JLabel l6;
 
 
     public GUI() {
         setContentPane(panel);
         setTitle("Prime");
-        setSize(550,450);
+        setSize(550, 450);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         button.addActionListener(this);
     }
 
+    public void setCountOfLabel(int counter)
+    {
+        l4.setText(String.valueOf(counter));
+    }
+
+    public void setMaxOfLabel(int maximum)
+    {
+        l5.setText(String.valueOf(maximum));
+    }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        long start = System.currentTimeMillis();
-        int n = Integer.parseInt(Num.getText());
-        int bfSz = Integer.parseInt(Size.getText());
-        String fName = File.getText();
-
-        Object obj = new Object();
-        Producer r1 = new Producer(n,bfSz);
-        Consumer r2 = new Consumer(fName);
-
-        Thread th1 =new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    r1.run(obj);
-//                    l4.setText(String.valueOf(r2.getMax()));
-//                    l5.setText(String.valueOf(r2.getCnt()));
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        Thread th2 =new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    r2.run(obj);
-                    l4.setText(String.valueOf(r2.getMax()));
-                    l5.setText(String.valueOf(r2.getCnt()));
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        th1.start();
-        th2.start();
-
-        long end = System.currentTimeMillis();
-        long elapsedTime = end - start;
-
-        l6.setText(elapsedTime + " ms");
+        Main m = new Main();
+        m.go();
     }
 
-    public static void main(String[] args){
-        new GUI();
-    }
 }

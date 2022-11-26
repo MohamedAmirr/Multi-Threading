@@ -31,8 +31,9 @@ public class Producer {
                     q.add(i);
                 }
                 if (q.size() == bfSz || i == N) {
-                    if (!firstTime)
+                    if (!firstTime) {
                         obj.notify();
+                    }
                     firstTime = false;
                     obj.wait();
                 }
