@@ -17,6 +17,7 @@ public class GUI extends JFrame implements ActionListener {
     public JLabel l4;
     public JLabel l5;
     public JLabel l6;
+    private JButton closeButton;
 
     public GUI() {                                          // setting GUI content
         setContentPane(panel);
@@ -25,13 +26,19 @@ public class GUI extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         button.addActionListener(this);
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {            // when we press on button start produce
         Main m = new Main();                                // create new object from main
         try {
-            m.go();                                         // calling go function in main
+            m.go();                                         // calling go function in main class
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }

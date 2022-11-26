@@ -1,3 +1,6 @@
+// Mohamed Amir Mohamed         20200429
+// Nermin Mostafa Madbouly      20200598
+
 public class Main {
     public static GUI g;
 
@@ -34,7 +37,6 @@ public class Main {
         th1.start();
         th2.start();
     }
-
     public static void main(String[] args) {
         g = new GUI();                                          // creating object from GUI
     }

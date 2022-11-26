@@ -44,6 +44,7 @@ public class Producer extends Buffer {
                 }
                 if (q.size() > 0) {
                     obj.notify();                                       // notify consumer if queue is not empty
+                    obj.wait();
                 }
             }
             finished = true;
